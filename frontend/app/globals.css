@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@tailwind utilities;
+:root {
+  --foreground: #171717;
+  --primary-red: #E63946;
+  --primary-blue: #1D3557;
+  --secondary-red: #FF6B6B;
+  --secondary-blue: #457B9D;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-cinzel);
+  --font-mono: var(--font-cinzel);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cinzel), serif;
+
+}
+h1, h2, h3 {
+  font-family: var(--font-cinzel_d), cursive;
+}
