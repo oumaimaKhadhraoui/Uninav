@@ -69,5 +69,14 @@ router.get('/google/callback', passport.authenticate('google', { session: false 
 
   res.redirect(`http://localhost:3000?token=${token}`);
 });
-
+//fetch logged in user
+router.get('/me', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    // Send back the user's data (excluding sensitive fields like password)
+    const { _id, username, email } = req.user;
+    res.json({ id: _id, username, email });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch user data' });
+  }
+});
 module.exports = router;

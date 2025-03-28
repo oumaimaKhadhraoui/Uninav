@@ -8,7 +8,8 @@ const GoogleButton = () => {
     const handleSignIn = () => {
         setIsLoading(true);
     };
-
+ // Redirect to the backend's Google OAuth route
+ window.location.href = "http://localhost:5000/auth/google";
     return (
         <button
             className={`flex w-full items-center justify-center gap-4 rounded-full border border-stroke bg-gray-2 p-[15px] font-medium hover:bg-opacity-50 ${

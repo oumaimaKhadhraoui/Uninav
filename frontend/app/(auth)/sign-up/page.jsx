@@ -56,7 +56,7 @@ const Page = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("User registered successfully! 🎉");
+        toast.success("User registered successfully! ");
         setTimeout(() => router.push("/"), 2000); // Redirect after 2 seconds
       } else {
         toast.error(data.msg || "Registration failed");
