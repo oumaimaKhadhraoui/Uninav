@@ -11,6 +11,8 @@
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.2",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
+    "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/viewer": "^1.9.82",
     "axios": "^1.8.4",
     "next": "15.2.4",
     "react": "^19.0.0",

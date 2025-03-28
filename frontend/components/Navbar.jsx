@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const menuItems = [
-  { name: "Accueil", href: "/" },
-  { name: "A propos", href: "/about-us" },
-  { name: "Contact", href: "/contact-us" },
-  { name: "Carte Collaborative", href: "/carte-collaborative" },
+  { name: "Home", href: "/" },
+  { name: "Events", href: "/events" },
+  { name: "Our Map", href: "/map" },
+  { name: "My Bookmarks", href: "/profile" },
 ];
 
 const LandingNavBar = () => {
@@ -21,11 +21,11 @@ const LandingNavBar = () => {
             <li key={index} className="relative">
               <Link
                 href={item.href}
-                className={`transition-all duration-300 ease-in-out px-3 py-2 rounded-md
+                className={`transition-all duration-300 ease-in-out px-3 py-2 
                   ${
                     pathname === item.href
-                      ? "text-[#B58E40] font-semibold border-b-2 border-[#B58E40] transform scale-105"
-                      : "text-gray-600 hover:text-[#B58E40] hover:scale-105"
+                      ? "text-yellow-400 font-semibold border-b-2 border-yellow-400 transform scale-105"
+                      : "text-white hover:text-[#B58E40] hover:scale-105"
                   }`}
               >
                 {item.name}
