@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 require('./config/passport'); // Import Passport config
 
 const authRoutes = require('./routes/auth');
+const placeRoutes = require('./routes/placeRoutes');
 
 const app = express();
 
@@ -28,6 +29,7 @@ mongoose.connect(process.env.MONGO_URI, {
   .catch(err => console.log(err));
 
 app.use('/auth', authRoutes);
+app.use('/api/places', placeRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

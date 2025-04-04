@@ -9,10 +9,10 @@ const LandingMobileHeader = () => {
   const pathname = usePathname();
   
   const menuItems = [
-    { name: "Accueil", url: "/" },
-    { name: "A propos", url: "/about-us" },
-    { name: "Contact", url: "/contact-us" },
-    { name: "Carte Collaborative", url: "/carte-collaborative" },
+    { name: 'Home', href: '/' },
+    { name: 'Events', href: '/events' },
+    { name: 'Map', href: '/map' },
+    { name: 'My Bookmarks', href: '/profile' },
   ];
 
   return (
@@ -48,13 +48,13 @@ const LandingMobileHeader = () => {
               {/* Navigation */}
               <nav className="mt-10">
                 <ul className="space-y-2">
-                  {menuItems.map(({ url, name }) => (
+                  {menuItems.map(({ href, name }) => (
                     <li key={name}>
                       <Link
-                        href={url}
+                        href={href}
                         className={`flex items-center px-6 h-[50px] font-semibold transition-colors
                           ${
-                            pathname === url
+                            pathname === href
                               ? "text-yellow-400 border-b-2 border-yellow-400"
                               : "text-gray-600 hover:text-yellow-300"
                           }`}

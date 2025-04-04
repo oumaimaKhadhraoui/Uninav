@@ -12,9 +12,7 @@ const links = [
 
 const Footer = () => {
   return (
-    <div>
-      {/* Footer Section */}
-      <footer className="bg-[#780C05] text-white py-16">
+      <footer className="bg-[#780C05] text-white py-16 bottom-0">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
           
           {/* Column 1 - Logo */}
@@ -75,7 +73,7 @@ const Footer = () => {
           <p className="text-sm opacity-80">Copyright © 2025 UniNav</p>
         </div>
       </footer>
-    </div>
+   
   );
 };
 

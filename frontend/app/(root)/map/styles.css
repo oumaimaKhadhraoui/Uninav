@@ -1,0 +1,125 @@
+/* General Styles */
+body {
+    font-family: "Cinzel", serif;
+    background-color: #FCF4E4;
+    color: #00072D;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background-color: #780C05;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+    color: #FCF4E4;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: #FCF4E4;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sign-up {
+    background-color: #00072D;
+    color: #FCF4E4;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Search Bar */
+.search-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.search-container input {
+    width: 50%;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #D8DDDE;
+    border-radius: 10px;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+}
+
+.filter-btn {
+    background-color: #B58E40;
+    color: #FCF4E4;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Map Section */
+#map {
+    height: 500px;
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 15px;
+}
+
+/* Saved Places */
+.saved-places {
+    text-align: center;
+    margin: 40px;
+}
+
+.saved-places h2 {
+    background-color: #D8DDDE;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #780C05;
+    color: #FCF4E4;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    margin-top: 50px;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.footer-section p a {
+    color: #FCF4E4;
+    text-decoration: none;
+}
+
+.footer-logo img {
+    height: 80px;
+}

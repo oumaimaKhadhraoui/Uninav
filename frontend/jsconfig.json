@@ -3,5 +3,8 @@
     "paths": {
       "@components/* ": ["./*"]
     }
-  }
+
+  },
+  "exclude": ["node_modules", "**/*.ts", "**/*.tsx"]
+
 }

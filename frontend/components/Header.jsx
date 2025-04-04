@@ -45,7 +45,7 @@ const LandingHeader = () => {
           width={200}
           height={200}
           alt="logo"
-          className="sm:h-20 h-auto w-auto"
+          className="h-20 w-auto"
         />
 
         {/* Desktop Navigation */}
@@ -54,12 +54,13 @@ const LandingHeader = () => {
         {/* Conditional Rendering for User */}
         {user ? (
           // If user is logged in, show avatar and username
+          <Link href="/account">
           <div className="hidden sm:flex items-center gap-4">
             <div className="flex items-center justify-center w-10 h-10 bg-yellow-400 rounded-full text-black font-bold">
               {user.username.charAt(0).toUpperCase()} {/* First letter of username */}
             </div>
-            <span className="text-black font-medium">{user.username}</span>
-          </div>
+            <span className="text-black text-xl font-semibold">{user.username}</span>
+          </div></Link>
         ) : (
           // If user is not logged in, show Login/Signup buttons
           <div className="hidden lg:block space-x-4">

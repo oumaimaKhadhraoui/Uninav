@@ -76,6 +76,7 @@ const Page = () => {
         </div>
         <div className="inputForm">
           <IoIosMail />
+        
           <input
             type="email"
             name="email"
