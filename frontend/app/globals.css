@@ -26,3 +26,76 @@ body {
 h1, h2, h3 {
   font-family: var(--font-cinzel_d), cursive;
 }
+  .fc {
+    @apply bg-white text-gray-800 text-xl rounded-xl shadow-lg border border-gray-200; /* Kept the border */
+  }
+  
+  /* Toolbar (header with buttons and title) */
+  .fc-header-toolbar {
+    @apply bg-gray-100 md:p-6 p-2 rounded-t-xl;
+  }
+  .fc-next-button  {
+    @apply bg-[#780C05] text-white hover:bg-[#780C05] p-0;
+  }
+  /* Toolbar buttons (prev, next, today, view buttons) */
+  .fc-button {
+    @apply bg-gray-50 text-black text-[15px] md:text-[20px] p-[5px] sm:p-2 border-slate-300 border rounded-[10] transition  focus:outline-none focus:ring-2 focus:ring-red-300 ; /* Non-active buttons are white */
+  }
+  .fc-toolbar-title {
+    @apply text-sm md:text-[20px] font-semibold ;
+  }
+  .fc-today-button {
+    @apply bg-[#780C05] opacity-100  text-white hover:bg-[#780C05] sm:p-2 ;
+  }
+  /* Active button (e.g., current view) */
+  .fc-button-active {
+    @apply bg-[#780C05] text-white hover:bg-[#780C05] ; /* Active buttons use Tailwind's green-500 */
+  }
+  
+  /* Day grid background */
+  .fc-daygrid {
+    @apply bg-gray-50;
+  }
+  
+  /* Day headers */
+  .fc-col-header-cell {
+    @apply bg-gray-100 text-gray-700 text-sm font-semibold p-2 ;
+  }
+  
+  /* Individual day cells */
+  .fc-daygrid-day {
+    @apply bg-white border border-red-200 hover:bg-red-50;
+  }
+  
+  /* Today’s cell */
+  .fc-day-today {
+    @apply bg-red-100 ;
+  }
+  .fc-daygrid-event-harness{
+    @apply border-l-4 border-[#780C05] p-0 m-0 ;
+  }
+  /* Events */
+  .fc-event {
+    @apply  bg-red-600/15 border-l-2 m-0 text-[#780C05] border-none rounded-md p-1 py-2 border-2 text-sm ;
+  }
+  .fc-event-title{
+    @apply font-semibold text-[#780C05] ;
+  }
+  /* Event time */
+  .fc-event-time {
+    @apply text-gray-100;
+  }
+  
+  /* Event title */
+  .fc-event-title {
+    @apply font-medium;
+  }
+  
+  /* List view (if using listPlugin) */
+  .fc-list {
+    @apply bg-gray-50;
+  }
+  
+  .fc-list-event {
+    @apply border-l-4 border-[#780C05] bg-white p-2 my-1 rounded-r-md;
+  }

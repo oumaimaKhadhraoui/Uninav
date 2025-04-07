@@ -20,7 +20,17 @@ exports.savePlace = async (req, res) => {
       user.savedPlaces.push(req.body.placeId);
       await user.save();
     }
-    res.json(user.savedPlaces);
+    res.json({ savedPlaces: user.savedPlaces });
+    } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+// @desc Get user's bookmarked places
+// @route GET /api/places/bookmarked
+exports.getBookmarkedPlaces = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).populate('savedPlaces');
+    res.json({ bookmarkedPlaces: user.savedPlaces });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

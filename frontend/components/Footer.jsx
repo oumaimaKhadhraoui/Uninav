@@ -29,7 +29,7 @@ const Footer = () => {
           {/* Column 2 - Information */}
           <div>
             <h3 className="text-lg font-bold">Information</h3>
-            <p className="mt-4 text-sm w-[60%] opacity-80">
+            <p className="mt-4 text-sm w-[60%] justify-center opacity-80">
               Welcome to UniNav, your go-to platform for campus connectivity, events, and student resources.
             </p>
           </div>

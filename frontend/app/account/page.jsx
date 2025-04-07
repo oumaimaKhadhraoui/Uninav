@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 const AccountPage = () => {
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const [bookmarkedPlaces, setBookmarkedPlaces] = useState([]);
 
   useEffect(() => {
     // Fetch user info from backend
@@ -29,7 +30,21 @@ const AccountPage = () => {
 
     fetchUser();
   }, [router]);
+  useEffect(() => {
+    const fetchBookmarkedPlaces = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/places/bookmarked", {
+          credentials: "include", // Include cookies for authentication
+        });
+        const data = await res.json();
+        setBookmarkedPlaces(data.bookmarkedPlaces);
+      } catch (err) {
+        console.error("Error fetching bookmarked places:", err);
+      }
+    };
 
+    fetchBookmarkedPlaces();
+  }, []);
   if (!user) return <p>Loading...</p>;
 
   return (
@@ -37,6 +52,16 @@ const AccountPage = () => {
       <h1>Welcome, {user.name}</h1>
       <p>Email: {user.email}</p>
       {/* Display more user details */}
+      <h1>Your Bookmarked Places</h1>
+      <ul>
+        {bookmarkedPlaces.map((place) => (
+          <li key={place._id}>
+            <h2>{place.name}</h2>
+            <p>Category: {place.category}</p>
+            <p>Coordinates: {place.location.coordinates.join(", ")}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

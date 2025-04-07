@@ -21,9 +21,26 @@ export default function UniNav() {
   const [filteredCategory, setFilteredCategory] = useState("");
   const [savedPlaces, setSavedPlaces] = useState([]);
 
-  const handleSavePlace = (name) => {
+  const handleSavePlace = async (name) => {
     if (!savedPlaces.includes(name)) {
       setSavedPlaces([...savedPlaces, name]);
+  
+      try {
+        const res = await fetch("/api/places/save", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ placeName: name }), // or placeId if you have it
+        });
+  
+        if (!res.ok) throw new Error("Failed to save place");
+  
+        const data = await res.json();
+        console.log("Saved places from server:", data.savedPlaces);
+      } catch (error) {
+        console.error("Error saving place:", error);
+      }
     }
   };
   const customIcon = new L.Icon({

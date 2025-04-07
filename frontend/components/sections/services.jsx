@@ -3,7 +3,7 @@ import React from 'react'
 const Services = () => {
   return (
     <div className="rounded-lg h-[460px] bg-[url('https://c.animaapp.com/blEGt9Dj/img/mask-group.png')]  bg-no-repeat bg-fixed bg-center  bg-cover">
-     <div className="pt-44 flex flex-col lg:flex-row gap-8 justify-center items-start py-16">
+     <div className="pt-44 flex  flex-row gap-8 justify-center items-start py-16">
   {/* Card 1 */}
   <div className="bg-gray-200 rounded-lg shadow-lg p-6 flex flex-col items-start gap-4 w-[300px]">
     <div className="w-16 h-16 bg-gray-300 rounded-full flex items-center justify-center">
