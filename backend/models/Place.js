@@ -17,7 +17,11 @@ const placeSchema = new Schema({
             type: [Number],
             required: true
         }
-    }
+    },
+    image: {
+        type: String,  // URL or local file path to the image
+        required: false,  // Optional, set to false if not all places have an image
+      },
 });
 
 placeSchema.index({ location: '2dsphere' });

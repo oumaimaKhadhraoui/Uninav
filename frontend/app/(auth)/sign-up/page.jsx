@@ -1,8 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation"; // For redirection
-import { toast } from "react-toastify"; // Import toast for notifications
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { IoIosMail } from "react-icons/io";
 import { MdOutlineLockPerson } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
@@ -10,85 +13,76 @@ import GoogleButton from "@components/components/GoogleButton ";
 import Link from "next/link";
 import "./page.css";
 
+// ✅ Zod schema
+const signupSchema = z.object({
+  username: z.string().min(2, "Username must be at least 2 characters"),
+  email: z
+    .string()
+    .regex(/\@/, "Email must contain @ symbol")
+    .email("Invalid email"),
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters long")
+    .max(50, "Password cannot exceed 50 characters")
+    .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+    .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+    .regex(/[0-9]/, "Password must contain at least one number")
+    .regex(/[^A-Za-z0-9]/, "Password must contain at least one special character"),
+});
+
 const Page = () => {
-  const router = useRouter(); // For redirection
+  const router = useRouter();
 
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(signupSchema),
   });
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
 
-  // Form validation
-  const validateForm = () => {
-    let tempErrors = {};
-    if (!formData.username) tempErrors.username = "Username is required";
-    if (!formData.email.includes("@")) tempErrors.email = "Invalid email";
-    if (formData.password.length < 8)
-      tempErrors.password = "Password must be at least 8 characters";
-
-    setErrors(tempErrors);
-    return Object.keys(tempErrors).length === 0;
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setErrors({ ...errors, [e.target.name]: "" }); // Clear error when typing
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!validateForm()) return; // Stop if validation fails
-
-    setLoading(true);
-
+  const onSubmit = async (data) => {
     try {
       const response = await fetch("http://localhost:5000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
       });
 
-      const data = await response.json();
+      const result = await response.json();
 
       if (response.ok) {
-        toast.success("User registered successfully! ");
-        setTimeout(() => router.push("/"), 2000); // Redirect after 2 seconds
+        toast.success("User registered successfully!");
+        router.push("/sign-in");
       } else {
-        toast.error(data.msg || "Registration failed");
+        toast.error(result.msg || "Registration failed");
       }
     } catch (error) {
       toast.error("Server error: " + error.message);
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
     <div>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
+        {/* EMAIL */}
         <div className="flex-column">
           <label>Email</label>
         </div>
         <div className="inputForm">
           <IoIosMail />
-        
           <input
             type="email"
-            name="email"
             placeholder="Enter your Email"
-            value={formData.email}
-            onChange={handleChange}
             className="input"
-            required
+            {...register("email")}
           />
-          {errors.email && <small className="error">{errors.email}</small>}
         </div>
+        {errors.email && <p className="text-red-700">{errors.email.message}</p>}
 
+        {/* PASSWORD */}
         <div className="flex-column">
           <label>Password</label>
         </div>
@@ -96,16 +90,14 @@ const Page = () => {
           <MdOutlineLockPerson />
           <input
             type="password"
-            name="password"
             placeholder="Enter your Password"
-            value={formData.password}
-            onChange={handleChange}
             className="input"
-            required
+            {...register("password")}
           />
-          {errors.password && <small className="error">{errors.password}</small>}
         </div>
+        {errors.password && <p className="text-red-700">{errors.password.message}</p>}
 
+        {/* USERNAME */}
         <div className="flex-column">
           <label>Username</label>
         </div>
@@ -113,23 +105,20 @@ const Page = () => {
           <FaRegUser />
           <input
             type="text"
-            name="username"
             placeholder="Enter your Username"
-            value={formData.username}
-            onChange={handleChange}
             className="input"
-            required
+            {...register("username")}
           />
-          {errors.username && <small className="error">{errors.username}</small>}
         </div>
+        {errors.username && <p className="text-red-700">{errors.username.message}</p>}
 
-        <button type="submit" className="button-submit font-cinzel" disabled={loading}>
-          {loading ? "Registering..." : "Sign Up"}
+        <button className="button-submit font-cinzel" type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Registering..." : "Sign Up"}
         </button>
 
         <Link href="/sign-in">
           <p className="p">
-            Already Have An Account? <span className="span">Sign in</span>
+            Already have an account? <span className="span">Sign in</span>
           </p>
         </Link>
 

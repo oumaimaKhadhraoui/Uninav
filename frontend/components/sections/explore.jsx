@@ -5,7 +5,7 @@ const Explore = () => {
     <div>
       {/* Explore Section */}
       <div className="text-center py-16">
-            <h2 className="text-3xl font-bold text-[#00072D]">Explore Your Campus</h2>
+            <h2 className="text-4xl font-bold text-[#00072D]">Explore Your Campus</h2>
             <div className="mt-4 h-2 w-32 bg-[#780C05] mx-auto rounded-full"></div>
             <div className="flex flex-wrap justify-center gap-8 mt-12">
               {/* Card 1 */}

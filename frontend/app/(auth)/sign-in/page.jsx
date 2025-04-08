@@ -1,72 +1,93 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation"; // For redirection
-import { toast } from "react-toastify"; // For toast notifications
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { IoIosMail } from "react-icons/io";
 import { MdOutlineLockPerson } from "react-icons/md";
 import GoogleButton from "@components/components/GoogleButton ";
 import "./page.css";
 import Link from "next/link";
 
+// 🔒 Define validation schema
+const loginSchema = z.object({
+  email: z
+  .string()
+  .regex(/\@/, "Email must contain @ symbol")
+  .email("Invalid email")
+
+  ,
+  
+  password: z
+              .string()
+              .min(6, "Password must be at least 6 characters long")
+              .max(50, "Password cannot exceed 50 characters")
+              .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+              .regex(/[0-9]/, "Password must contain at least one number")
+});
+
 const Page = () => {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  // Handle the sign-in form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(""); // Reset error message before submitting
+  // 🔧 Initialize form
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
 
+  const onSubmit = async (data) => {
     try {
       const response = await fetch("http://localhost:5000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
-        credentials: "include", // Send cookies with the request
+        body: JSON.stringify(data),
+        credentials: "include",
       });
 
-      const data = await response.json();
+      const resData = await response.json();
 
       if (response.ok) {
         toast.success("Login successful! 🎉");
-        router.push("/"); // Redirect to home page upon successful login
+        router.push("/");
       } else {
-        setError(data.msg || "Login failed. Please check your credentials.");
+        toast.error(resData.msg || "Login failed. Please check your credentials.");
       }
     } catch (err) {
-      setError("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
-  // Handle Google login
   const handleGoogleLogin = async () => {
     try {
       const response = await fetch("http://localhost:5000/auth/google", {
         method: "GET",
-        credentials: "include", // Send cookies with the request
+        credentials: "include",
       });
 
       const data = await response.json();
 
       if (response.ok) {
         toast.success("Google login successful!");
-        router.push("/"); // Redirect to home page
+        router.push("/");
       } else {
-        setError(data.msg || "Google login failed.");
+        toast.error(data.msg || "Google login failed.");
       }
     } catch (err) {
-      setError("Something went wrong with Google login.");
+      toast.error("Something went wrong with Google login.");
     }
   };
 
   return (
     <div>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="flex-column">
           <label>Email</label>
         </div>
@@ -74,13 +95,12 @@ const Page = () => {
           <IoIosMail />
           <input
             placeholder="Enter your Email"
-            className="input"
+            className={`input`}
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            {...register("email")}
           />
         </div>
+        {errors.email && <p className="text-red-700">{errors.email.message}</p>}
 
         <div className="flex-column">
           <label>Password</label>
@@ -91,13 +111,10 @@ const Page = () => {
             placeholder="Enter your Password"
             className="input"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
+            {...register("password")}
           />
         </div>
-
-        {error && <p className="error">{error}</p>} {/* Display error message */}
+        {errors.password && <p className="text-red-700">{errors.password.message}</p>}
 
         <div className="flex-row">
           <span className="span">Forgot password?</span>
@@ -106,13 +123,14 @@ const Page = () => {
         <button className="button-submit" type="submit">
           Sign In
         </button>
-<Link href="/sign-up">
-        <p className="p">
-          Don't have an account? <span className="span">Sign Up</span>
-        </p>
-        <p className="p line">Or With</p>
+
+        <Link href="/sign-up">
+          <p className="p">
+            Don't have an account? <span className="span">Sign Up</span>
+          </p>
+          <p className="p line">Or With</p>
         </Link>
-        {/* Google Button with backend integration */}
+
         <div className="flex-row">
           <GoogleButton onClick={handleGoogleLogin} />
         </div>

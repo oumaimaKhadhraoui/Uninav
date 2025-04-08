@@ -7,11 +7,13 @@ import Image from "next/image";
 export default function EventsPage() {
   return (
     <div className="bg-[#FCF4E4] min-h-screen py-10">
+      {/* Title */}
+      <h2 className="text-5xl font-bold text-center text-[#00072D]">Our Calendar</h2>
+            <div className="mt-4 h-2 w-32 bg-[#780C05] mx-auto rounded-full"></div>
         <Calendar/>
       {/* Title */}
-      <div className="bg-[#D8DDDE] rounded-xl h-[70px] w-[80%] mx-auto flex items-center justify-center mb-10">
-        <p className="text-[#780C05] text-5xl font-bold">Events</p>
-      </div>
+      <h2 className="text-5xl font-bold text-center text-[#00072D]">The Latest Events</h2>
+            <div className="mt-4 h-2 w-32 bg-[#780C05] mx-auto rounded-full my-10"></div>
 
       {/* Events Cards */}
       <div className="flex flex-wrap justify-around gap-6 px-6 mb-20">
@@ -32,7 +34,7 @@ export default function EventsPage() {
             desc: `At the general assembly, leaders warmly welcome new members and outline their roles and responsibilities.`,
           },
         ].map((event, idx) => (
-          <div key={idx} className="bg-[#D8DDDE] p-5 rounded-lg text-center w-full sm:w-[45%] md:w-[30%]">
+          <div key={idx} className="bg-white p-5 rounded-lg text-center w-full sm:w-[45%] md:w-[30%]">
             <Image src={event.img} alt={`${event.title} Image`} width={400} height={300} className="w-full h-auto rounded-md" />
             <h2 className="text-xl text-[#B58E40] mt-3 font-semibold">{event.title}</h2>
             <p className="text-[#00072D] mt-2 text-sm">{event.desc}</p>
@@ -44,7 +46,9 @@ export default function EventsPage() {
           </div>
         ))}
       </div>
-
+{/* Title */}
+<h2 className="text-5xl font-bold text-center text-[#00072D]">Some Organizations</h2>
+            <div className="mt-4 h-2 w-32 bg-[#780C05] mx-auto rounded-full my-10"></div>
       {/* Organizations */}
       <div className="w-[80%] mx-auto space-y-16">
         {[

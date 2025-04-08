@@ -7,7 +7,7 @@ const menuItems = [
   { name: "Home", href: "/" },
   { name: "Events", href: "/events" },
   { name: "Our Map", href: "/map" },
-  { name: "My Bookmarks", href: "/profile" },
+  { name: "My Bookmarks", href: "/account" },
 ];
 
 const LandingNavBar = () => {

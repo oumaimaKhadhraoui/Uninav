@@ -29,7 +29,7 @@ const Footer = () => {
           {/* Column 2 - Information */}
           <div>
             <h3 className="text-lg font-bold">Information</h3>
-            <p className="mt-4 text-sm w-[60%] justify-center opacity-80">
+            <p className="mt-4 text-sm w-[60%]  opacity-80">
               Welcome to UniNav, your go-to platform for campus connectivity, events, and student resources.
             </p>
           </div>
@@ -51,8 +51,8 @@ const Footer = () => {
           {/* Column 4 - Contact Information */}
           <div>
             <h3 className="text-lg font-bold">Contact Us</h3>
-            <ul className="mt-4 space-y-4 text-sm opacity-80">
-              <li className="flex items-center">
+            <ul className="mt-4 space-y-4  text-sm opacity-80 ">
+              <li className="flex items-center text-center">
                 <FaPhoneAlt className="mr-2" />
                 <span>(123) 456-7890</span>
               </li>
@@ -60,7 +60,7 @@ const Footer = () => {
                 <FaEnvelope className="mr-2" />
                 <span>contact@univnav.com</span>
               </li>
-              <li className="flex items-center">
+              <li className="flex text-center items-center">
                 <FaMapMarkerAlt className="mr-2" />
                 <span>123 Campus Manar, University City</span>
               </li>

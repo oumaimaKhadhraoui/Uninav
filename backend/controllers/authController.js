@@ -66,11 +66,17 @@ const googleCallback = (req, res) => {
 // Fetch Logged-In User
 const getMe = async (req, res) => {
   try {
-    const { _id, username, email } = req.user;
-    res.json({ id: _id, username, email });
+    const user = await User.findById(req.user.id).populate('savedPlaces');
+    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    res.json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      savedPlaces: user.savedPlaces, // array of full Place documents
+    });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch user data' });
   }
 };
-
 module.exports = { register, login, googleCallback, getMe };

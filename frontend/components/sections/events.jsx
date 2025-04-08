@@ -5,7 +5,7 @@ const Events = () => {
     <div>
         {/* Featured Events Section */}
         <section className="text-center py-16">
-                    <h2 className="text-3xl font-bold text-[#00072D]">
+                    <h2 className="text-4xl font-bold text-[#00072D]">
                       Featured Events & Student Clubs
                     </h2>
                     <div className="mt-4 h-2 w-32 bg-[#780C05] mx-auto rounded-full"></div>

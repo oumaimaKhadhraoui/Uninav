@@ -9,12 +9,12 @@ export default function Home() {
     <div className=" flex justify-center">
         <div className="w-full max-w-[1440px]">
         {/*Hero section */}
-          <div className="grid grid-cols-2 items-center">
-            <div className="pl-16 pb-16 space-y-3"><h2 className="text-6xl  ">FIND YOUR EVERYTHING TODAY </h2><h5>The Ultimate Guide to FST University</h5><h1 className="text-[110px] text-[#780C05] ">UNINAV</h1></div>
+          <div className="grid md:grid-cols-2 grid-cols-1 items-center">
+            <div className="pl-16 pb-16 space-y-3"><h2 className="text-lg sm:text-6xl  ">FIND YOUR EVERYTHING TODAY </h2><h5>The Ultimate Guide to FST University</h5><h1 className="text-xl sm:text-[110px] text-[#780C05] ">UNINAV</h1></div>
             <div className=" h-screen overflow-hidden"><Map/></div>
           </div>
           <section className="text-center pb-12 items-center justify-items-center text-white  md:grid md:grid-cols-2 gap-10">
-          <div className="relative rounded-2xl mt-7 text-center bg-[url('https://c.animaapp.com/blEGt9Dj/img/image-2.png')]  bg-no-repeat  bg-center bg-cover h-[400px] w-full py-16 px-8">
+          <div className="relative rounded-2xl  text-center bg-[url('https://c.animaapp.com/blEGt9Dj/img/image-2.png')]  bg-no-repeat  bg-center bg-cover h-[400px] w-full py-16 px-8">
    <div className="absolute inset-0 rounded-2xl bg-black/25"></div>                   
        </div>
                     <div className=" items-center justify-items-end w-[90%]">
